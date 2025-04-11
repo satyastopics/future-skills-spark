@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,17 +6,14 @@ import ResourceLibrary from "@/components/ResourceLibrary";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Book, Users, Calendar, CheckCircle, Clock } from "lucide-react";
-
 const TeachingTools = () => {
   const [activeTab, setActiveTab] = useState("whiteboard");
-  
+
   // Set page title
   useEffect(() => {
     document.title = "Teaching Tools - Future Skills School";
   }, []);
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       
       <main className="flex-1 bg-gray-50">
@@ -32,9 +28,7 @@ const TeachingTools = () => {
           
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-2">
-              <TabsTrigger value="whiteboard" className="text-sm">
-                Digital Whiteboard
-              </TabsTrigger>
+              
               <TabsTrigger value="resources" className="text-sm">
                 Resource Library
               </TabsTrigger>
@@ -107,10 +101,7 @@ const TeachingTools = () => {
                         </div>
                       </div>
                       
-                      <a 
-                        href="#" 
-                        className="text-sm text-fss-primary hover:text-fss-secondary font-medium"
-                      >
+                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
                         View full session plan →
                       </a>
                     </div>
@@ -137,10 +128,7 @@ const TeachingTools = () => {
                         </div>
                       </div>
                       
-                      <a 
-                        href="#" 
-                        className="text-sm text-fss-primary hover:text-fss-secondary font-medium"
-                      >
+                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
                         View full session plan →
                       </a>
                     </div>
@@ -167,10 +155,7 @@ const TeachingTools = () => {
                         </div>
                       </div>
                       
-                      <a 
-                        href="#" 
-                        className="text-sm text-fss-primary hover:text-fss-secondary font-medium"
-                      >
+                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
                         View full session plan →
                       </a>
                     </div>
@@ -200,10 +185,7 @@ const TeachingTools = () => {
                         <p className="text-sm text-gray-600 mb-3">
                           A comprehensive template for showcasing diverse skills across multiple domains.
                         </p>
-                        <a 
-                          href="#" 
-                          className="text-sm text-fss-primary hover:text-fss-secondary font-medium"
-                        >
+                        <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
                           Download Template
                         </a>
                       </div>
@@ -220,10 +202,7 @@ const TeachingTools = () => {
                         <p className="text-sm text-gray-600 mb-3">
                           Specialized template for showcasing technical and digital skills.
                         </p>
-                        <a 
-                          href="#" 
-                          className="text-sm text-fss-primary hover:text-fss-secondary font-medium"
-                        >
+                        <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
                           Download Template
                         </a>
                       </div>
@@ -240,10 +219,7 @@ const TeachingTools = () => {
                         <p className="text-sm text-gray-600 mb-3">
                           Visual-focused template for creative and content creation skills.
                         </p>
-                        <a 
-                          href="#" 
-                          className="text-sm text-fss-primary hover:text-fss-secondary font-medium"
-                        >
+                        <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
                           Download Template
                         </a>
                       </div>
@@ -260,10 +236,7 @@ const TeachingTools = () => {
                         <p className="text-sm text-gray-600 mb-3">
                           Template focused on business, management, and entrepreneurship skills.
                         </p>
-                        <a 
-                          href="#" 
-                          className="text-sm text-fss-primary hover:text-fss-secondary font-medium"
-                        >
+                        <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
                           Download Template
                         </a>
                       </div>
@@ -277,8 +250,6 @@ const TeachingTools = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default TeachingTools;
