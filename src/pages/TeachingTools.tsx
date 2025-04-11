@@ -2,16 +2,17 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Whiteboard from "@/components/Whiteboard";
 import ResourceLibrary from "@/components/ResourceLibrary";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Book, Users, Calendar, CheckCircle, Clock, Eye, Download, ExternalLink } from "lucide-react";
+import { BookOpen, FileText, Download, Printer, Calendar, CheckCircle, Clock, Users, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import PrintableResources from "@/components/PrintableResources";
+import ImplementationRoadmaps from "@/components/ImplementationRoadmaps";
 
 const TeachingTools = () => {
-  const [activeTab, setActiveTab] = useState("whiteboard");
+  const [activeTab, setActiveTab] = useState("resources");
   const [openTemplate, setOpenTemplate] = useState<string | null>(null);
 
   // Set page title
@@ -424,51 +425,51 @@ const TeachingTools = () => {
           <header className="mb-8">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">Teaching Tools</h1>
             <p className="text-gray-600 max-w-3xl">
-              Tools and resources designed for teachers with limited technical resources to deliver
-              high-quality skill development sessions.
+              Practical resources designed for teachers with limited technical resources to deliver
+              high-quality skill development sessions for students with minimal resources.
             </p>
           </header>
           
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-2">
-              <TabsTrigger value="whiteboard" className="text-sm">
-                Digital Whiteboard
-              </TabsTrigger>
               <TabsTrigger value="resources" className="text-sm">
                 Resource Library
+              </TabsTrigger>
+              <TabsTrigger value="printables" className="text-sm">
+                Printable Materials
               </TabsTrigger>
               <TabsTrigger value="sessions" className="text-sm">
                 Session Plans
               </TabsTrigger>
-              <TabsTrigger value="templates" className="text-sm">
-                Portfolio Templates
+              <TabsTrigger value="roadmaps" className="text-sm">
+                Implementation Roadmaps
               </TabsTrigger>
             </TabsList>
-            
-            <TabsContent value="whiteboard" className="mt-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Digital Whiteboard</CardTitle>
-                  <CardDescription>
-                    An interactive whiteboard for teaching concepts during in-person or virtual sessions.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <Whiteboard />
-                </CardContent>
-              </Card>
-            </TabsContent>
             
             <TabsContent value="resources" className="mt-6">
               <Card>
                 <CardHeader>
                   <CardTitle>Resource Library</CardTitle>
                   <CardDescription>
-                    Access teaching materials, guides, and printable templates.
+                    Access teaching materials, guides, and templates designed for limited-resource environments.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0 px-0">
                   <ResourceLibrary />
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="printables" className="mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Printable Materials</CardTitle>
+                  <CardDescription>
+                    Ready-to-print worksheets, assessment forms, and classroom materials that require no digital devices.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <PrintableResources />
                 </CardContent>
               </Card>
             </TabsContent>
@@ -478,7 +479,7 @@ const TeachingTools = () => {
                 <CardHeader>
                   <CardTitle>Session Plans</CardTitle>
                   <CardDescription>
-                    Structured session plans for group skill-building workshops.
+                    Structured session plans for group skill-building workshops that can be conducted with minimal resources.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -490,7 +491,7 @@ const TeachingTools = () => {
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
                         This introductory session helps students understand what high-income skills are and 
-                        why they're valuable in today's economy.
+                        why they're valuable even with limited resources.
                       </p>
                       
                       <div className="space-y-2 mb-4">
@@ -506,18 +507,32 @@ const TeachingTools = () => {
                         </div>
                       </div>
                       
-                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
-                        View full session plan →
-                      </a>
+                      <div className="flex space-x-2">
+                        <Button 
+                          size="sm"
+                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          Download Plan
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center"
+                        >
+                          <Printer className="h-4 w-4 mr-1" />
+                          Printable Materials
+                        </Button>
+                      </div>
                     </div>
                     
                     <div className="border border-gray-100 rounded-lg p-4 bg-white">
                       <div className="flex items-center mb-3">
-                        <Book className="h-5 w-5 mr-2 text-fss-primary" />
+                        <BookOpen className="h-5 w-5 mr-2 text-fss-primary" />
                         <h3 className="font-semibold">Building Your First Portfolio</h3>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        A practical workshop on creating a skill portfolio that showcases students' abilities.
+                        A practical workshop on creating a paper-based skill portfolio that can later be digitized when resources allow.
                       </p>
                       
                       <div className="space-y-2 mb-4">
@@ -528,14 +543,28 @@ const TeachingTools = () => {
                         <div className="flex items-start">
                           <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
                           <p className="text-sm text-gray-600">
-                            Objectives: Create a simple portfolio structure, document existing skills, identify development areas
+                            Objectives: Create a paper portfolio structure, document existing skills, identify development areas
                           </p>
                         </div>
                       </div>
                       
-                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
-                        View full session plan →
-                      </a>
+                      <div className="flex space-x-2">
+                        <Button 
+                          size="sm"
+                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          Download Plan
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center"
+                        >
+                          <Printer className="h-4 w-4 mr-1" />
+                          Printable Materials
+                        </Button>
+                      </div>
                     </div>
                     
                     <div className="border border-gray-100 rounded-lg p-4 bg-white">
@@ -544,7 +573,7 @@ const TeachingTools = () => {
                         <h3 className="font-semibold">Communication Skills Workshop</h3>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        Essential workshop on developing effective verbal and written communication skills.
+                        Essential workshop on developing effective verbal and written communication skills with basic role-playing techniques.
                       </p>
                       
                       <div className="space-y-2 mb-4">
@@ -560,9 +589,23 @@ const TeachingTools = () => {
                         </div>
                       </div>
                       
-                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
-                        View full session plan →
-                      </a>
+                      <div className="flex space-x-2">
+                        <Button 
+                          size="sm"
+                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          Download Plan
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center"
+                        >
+                          <Printer className="h-4 w-4 mr-1" />
+                          Printable Materials
+                        </Button>
+                      </div>
                     </div>
                     
                     <div className="border border-gray-100 rounded-lg p-4 bg-white">
@@ -571,7 +614,7 @@ const TeachingTools = () => {
                         <h3 className="font-semibold">Tech Literacy Fundamentals</h3>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        Basic tech literacy skills workshop designed for students with minimal prior exposure to technology.
+                        Basic tech literacy skills workshop with techniques that can be taught using diagrams and paper exercises.
                       </p>
                       
                       <div className="space-y-2 mb-4">
@@ -582,14 +625,28 @@ const TeachingTools = () => {
                         <div className="flex items-start">
                           <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
                           <p className="text-sm text-gray-600">
-                            Objectives: Basic computer operations, internet searching skills, online safety, simple productivity tools
+                            Objectives: Understand basic computer concepts, internet functionality, online safety, and simple productivity tools
                           </p>
                         </div>
                       </div>
                       
-                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
-                        View full session plan →
-                      </a>
+                      <div className="flex space-x-2">
+                        <Button 
+                          size="sm"
+                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          Download Plan
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center"
+                        >
+                          <Printer className="h-4 w-4 mr-1" />
+                          Printable Materials
+                        </Button>
+                      </div>
                     </div>
                     
                     <div className="border border-gray-100 rounded-lg p-4 bg-white">
@@ -598,7 +655,7 @@ const TeachingTools = () => {
                         <h3 className="font-semibold">Growth Mindset Development</h3>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        Workshop focused on developing a growth mindset, resilience, and forward thinking abilities.
+                        Workshop focused on developing a growth mindset with practical exercises using simple classroom materials.
                       </p>
                       
                       <div className="space-y-2 mb-4">
@@ -614,9 +671,23 @@ const TeachingTools = () => {
                         </div>
                       </div>
                       
-                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
-                        View full session plan →
-                      </a>
+                      <div className="flex space-x-2">
+                        <Button 
+                          size="sm"
+                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          Download Plan
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center"
+                        >
+                          <Printer className="h-4 w-4 mr-1" />
+                          Printable Materials
+                        </Button>
+                      </div>
                     </div>
                     
                     <div className="border border-gray-100 rounded-lg p-4 bg-white">
@@ -625,7 +696,7 @@ const TeachingTools = () => {
                         <h3 className="font-semibold">Problem-Solving Techniques</h3>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        Interactive workshop on developing creative and critical problem-solving skills.
+                        Interactive workshop on developing creative and critical problem-solving skills using locally-relevant examples.
                       </p>
                       
                       <div className="space-y-2 mb-4">
@@ -641,62 +712,39 @@ const TeachingTools = () => {
                         </div>
                       </div>
                       
-                      <a href="#" className="text-sm text-fss-primary hover:text-fss-secondary font-medium">
-                        View full session plan →
-                      </a>
+                      <div className="flex space-x-2">
+                        <Button 
+                          size="sm"
+                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          Download Plan
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center"
+                        >
+                          <Printer className="h-4 w-4 mr-1" />
+                          Printable Materials
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
             
-            <TabsContent value="templates" className="mt-6">
+            <TabsContent value="roadmaps" className="mt-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Portfolio Templates</CardTitle>
+                  <CardTitle>Implementation Roadmaps</CardTitle>
                   <CardDescription>
-                    Templates and guides for creating professional skill portfolios.
+                    Step-by-step guides for implementing full skill development programs over multiple sessions.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {portfolioTemplates.map((template) => (
-                      <div key={template.id} className="border border-gray-200 rounded-lg overflow-hidden">
-                        <div className="aspect-w-16 aspect-h-9 bg-gray-100">
-                          <div className="flex items-center justify-center h-full bg-gray-100 text-gray-400">
-                            Portfolio Template Preview
-                          </div>
-                        </div>
-                        <div className="p-4">
-                          <h3 className="font-medium mb-1">{template.name}</h3>
-                          <p className="text-sm text-gray-600 mb-3">
-                            {template.description}
-                          </p>
-                          <div className="flex space-x-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="text-sm text-fss-primary hover:text-fss-secondary flex items-center"
-                              onClick={() => setOpenTemplate(template.id)}
-                            >
-                              <Eye className="h-4 w-4 mr-1" />
-                              View Template
-                            </Button>
-                            <a 
-                              href={template.downloadUrl} 
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md border border-gray-300 shadow-sm bg-white text-fss-primary hover:bg-gray-50"
-                              download={`${template.name.replace(/\s+/g, '-').toLowerCase()}.pdf`}
-                            >
-                              <Download className="h-4 w-4 mr-1" />
-                              Download
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <ImplementationRoadmaps />
                 </CardContent>
               </Card>
             </TabsContent>
