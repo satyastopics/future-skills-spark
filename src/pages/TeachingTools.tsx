@@ -1,8 +1,8 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ResourceLibrary from "@/components/ResourceLibrary";
+import SessionPlans from "@/components/SessionPlans";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, FileText, Download, Printer, Calendar, CheckCircle, Clock, Users, ExternalLink } from "lucide-react";
@@ -426,7 +426,7 @@ const TeachingTools = () => {
             <h1 className="text-3xl font-bold text-gray-800 mb-2">Teaching Tools</h1>
             <p className="text-gray-600 max-w-3xl">
               Practical resources designed for teachers with limited technical resources to deliver
-              high-quality skill development sessions for students with minimal resources.
+              high-quality skill development sessions for students building high-income skill portfolios.
             </p>
           </header>
           
@@ -479,258 +479,11 @@ const TeachingTools = () => {
                 <CardHeader>
                   <CardTitle>Session Plans</CardTitle>
                   <CardDescription>
-                    Structured session plans for group skill-building workshops that can be conducted with minimal resources.
+                    Structured session plans for skill-building workshops that help students develop high-income skills with minimal resources.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="border border-gray-100 rounded-lg p-4 bg-white">
-                      <div className="flex items-center mb-3">
-                        <Users className="h-5 w-5 mr-2 text-fss-primary" />
-                        <h3 className="font-semibold">Introduction to High-Income Skills</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">
-                        This introductory session helps students understand what high-income skills are and 
-                        why they're valuable even with limited resources.
-                      </p>
-                      
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-start">
-                          <Clock className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">Duration: 2 hours</p>
-                        </div>
-                        <div className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">
-                            Objectives: Understand high-income skills, identify personal interests, set initial goals
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex space-x-2">
-                        <Button 
-                          size="sm"
-                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
-                        >
-                          <Download className="h-4 w-4 mr-1" />
-                          Download Plan
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center"
-                        >
-                          <Printer className="h-4 w-4 mr-1" />
-                          Printable Materials
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <div className="border border-gray-100 rounded-lg p-4 bg-white">
-                      <div className="flex items-center mb-3">
-                        <BookOpen className="h-5 w-5 mr-2 text-fss-primary" />
-                        <h3 className="font-semibold">Building Your First Portfolio</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">
-                        A practical workshop on creating a paper-based skill portfolio that can later be digitized when resources allow.
-                      </p>
-                      
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-start">
-                          <Clock className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">Duration: 3 hours</p>
-                        </div>
-                        <div className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">
-                            Objectives: Create a paper portfolio structure, document existing skills, identify development areas
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex space-x-2">
-                        <Button 
-                          size="sm"
-                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
-                        >
-                          <Download className="h-4 w-4 mr-1" />
-                          Download Plan
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center"
-                        >
-                          <Printer className="h-4 w-4 mr-1" />
-                          Printable Materials
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <div className="border border-gray-100 rounded-lg p-4 bg-white">
-                      <div className="flex items-center mb-3">
-                        <Calendar className="h-5 w-5 mr-2 text-fss-primary" />
-                        <h3 className="font-semibold">Communication Skills Workshop</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">
-                        Essential workshop on developing effective verbal and written communication skills with basic role-playing techniques.
-                      </p>
-                      
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-start">
-                          <Clock className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">Duration: 2.5 hours</p>
-                        </div>
-                        <div className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">
-                            Objectives: Practice public speaking, learn clear writing principles, give and receive feedback
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex space-x-2">
-                        <Button 
-                          size="sm"
-                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
-                        >
-                          <Download className="h-4 w-4 mr-1" />
-                          Download Plan
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center"
-                        >
-                          <Printer className="h-4 w-4 mr-1" />
-                          Printable Materials
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <div className="border border-gray-100 rounded-lg p-4 bg-white">
-                      <div className="flex items-center mb-3">
-                        <Users className="h-5 w-5 mr-2 text-fss-primary" />
-                        <h3 className="font-semibold">Tech Literacy Fundamentals</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">
-                        Basic tech literacy skills workshop with techniques that can be taught using diagrams and paper exercises.
-                      </p>
-                      
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-start">
-                          <Clock className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">Duration: 3 hours</p>
-                        </div>
-                        <div className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">
-                            Objectives: Understand basic computer concepts, internet functionality, online safety, and simple productivity tools
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex space-x-2">
-                        <Button 
-                          size="sm"
-                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
-                        >
-                          <Download className="h-4 w-4 mr-1" />
-                          Download Plan
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center"
-                        >
-                          <Printer className="h-4 w-4 mr-1" />
-                          Printable Materials
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <div className="border border-gray-100 rounded-lg p-4 bg-white">
-                      <div className="flex items-center mb-3">
-                        <Users className="h-5 w-5 mr-2 text-fss-primary" />
-                        <h3 className="font-semibold">Growth Mindset Development</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">
-                        Workshop focused on developing a growth mindset with practical exercises using simple classroom materials.
-                      </p>
-                      
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-start">
-                          <Clock className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">Duration: 2 hours</p>
-                        </div>
-                        <div className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">
-                            Objectives: Understanding growth vs fixed mindset, practicing resilience, developing goal-setting habits
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex space-x-2">
-                        <Button 
-                          size="sm"
-                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
-                        >
-                          <Download className="h-4 w-4 mr-1" />
-                          Download Plan
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center"
-                        >
-                          <Printer className="h-4 w-4 mr-1" />
-                          Printable Materials
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <div className="border border-gray-100 rounded-lg p-4 bg-white">
-                      <div className="flex items-center mb-3">
-                        <Calendar className="h-5 w-5 mr-2 text-fss-primary" />
-                        <h3 className="font-semibold">Problem-Solving Techniques</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">
-                        Interactive workshop on developing creative and critical problem-solving skills using locally-relevant examples.
-                      </p>
-                      
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-start">
-                          <Clock className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">Duration: 2.5 hours</p>
-                        </div>
-                        <div className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-gray-500 mt-0.5" />
-                          <p className="text-sm text-gray-600">
-                            Objectives: Learn problem identification, brainstorming techniques, solution evaluation methods
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex space-x-2">
-                        <Button 
-                          size="sm"
-                          className="bg-fss-primary hover:bg-fss-secondary flex items-center"
-                        >
-                          <Download className="h-4 w-4 mr-1" />
-                          Download Plan
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center"
-                        >
-                          <Printer className="h-4 w-4 mr-1" />
-                          Printable Materials
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+                  <SessionPlans />
                 </CardContent>
               </Card>
             </TabsContent>
