@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Search, Clock, Calendar, Users, Download, FileDown, Filter, CheckCircle, BookOpen, ScaleBattery, PuzzleSolver, ChevronDown, ChevronUp, PenLine, Briefcase, Brain } from "lucide-react";
+import { Search, Clock, Calendar, Users, Download, FileDown, Filter, CheckCircle, BookOpen, Scale, Puzzle, ChevronDown, ChevronUp, PenLine, Briefcase, Brain } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -777,8 +777,8 @@ const GuidanceProgramBuilder = () => {
   const getResourceIcon = (type: ResourceType) => {
     switch (type) {
       case "handout": return <FileDown className="h-4 w-4" />;
-      case "activity": return <PuzzleSolver className="h-4 w-4" />;
-      case "assessment": return <ScaleBattery className="h-4 w-4" />;
+      case "activity": return <Puzzle className="h-4 w-4" />;
+      case "assessment": return <Scale className="h-4 w-4" />;
       case "guide": return <BookOpen className="h-4 w-4" />;
       case "template": return <PenLine className="h-4 w-4" />;
       default: return <FileDown className="h-4 w-4" />;
