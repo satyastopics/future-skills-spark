@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Search, Clock, Calendar, Users, Download, FileDown, Filter, CheckCircle, BookOpen, Scale, Puzzle, ChevronDown, ChevronUp, PenLine, Briefcase, Brain, MessageCircle, GraduationCap, Award, Info, ArrowRight, Rocket, Star, LucideIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -851,4 +852,42 @@ const GuidanceProgramBuilder = () => {
             <Calendar className="h-4 w-4 mr-2" />
             Session Plans
           </TabsTrigger>
-          <Tabs
+          <TabsTrigger value="implementation">
+            <Rocket className="h-4 w-4 mr-2" />
+            Implementation Guide
+          </TabsTrigger>
+          <TabsTrigger value="resources">
+            <BookOpen className="h-4 w-4 mr-2" />
+            Teacher Resources
+          </TabsTrigger>
+        </TabsList>
+
+        {/* Tab content for Overview */}
+        <TabsContent value="overview">
+          {/* Overview content here */}
+          <h2>Overview content will be added here</h2>
+        </TabsContent>
+        
+        {/* Tab content for Sessions */}
+        <TabsContent value="sessions">
+          {/* Sessions content here */}
+          <h2>Sessions content will be added here</h2>
+        </TabsContent>
+        
+        {/* Tab content for Implementation */}
+        <TabsContent value="implementation">
+          {/* Implementation content here */}
+          <h2>Implementation content will be added here</h2>
+        </TabsContent>
+        
+        {/* Tab content for Resources */}
+        <TabsContent value="resources">
+          {/* Resources content here */}
+          <h2>Resources content will be added here</h2>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+};
+
+export default GuidanceProgramBuilder;
