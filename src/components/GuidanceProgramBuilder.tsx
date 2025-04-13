@@ -1,14 +1,14 @@
-
 import { useState } from "react";
-import { Search, Clock, Calendar, Users, Download, FileDown, Filter, CheckCircle, BookOpen, Scale, Puzzle, ChevronDown, ChevronUp, PenLine, Briefcase, Brain } from "lucide-react";
+import { Search, Clock, Calendar, Users, Download, FileDown, Filter, CheckCircle, BookOpen, Scale, Puzzle, ChevronDown, ChevronUp, PenLine, Briefcase, Brain, MessageCircle, GraduationCap, Award, Info, ArrowRight, Rocket, Star, LucideIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { Separator } from "@/components/ui/separator";
 
 enum FrequencyType {
   WEEKLY = "weekly",
@@ -703,12 +703,54 @@ const sessionData: GuidanceSession[] = [
   }
 ];
 
+const TeacherResourceCard = ({ 
+  icon: Icon, 
+  title, 
+  description, 
+  buttonText = "Download Resource"
+}: { 
+  icon: LucideIcon; 
+  title: string; 
+  description: string;
+  buttonText?: string;
+}) => {
+  const { toast } = useToast();
+  
+  const handleDownload = () => {
+    toast({
+      title: "Resource Ready",
+      description: `${title} has been prepared for download.`,
+    });
+  };
+  
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg flex items-center">
+          <Icon className="h-5 w-5 mr-2 text-fss-primary" />
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-gray-600 mb-4">
+          {description}
+        </p>
+        <Button variant="outline" className="w-full" onClick={handleDownload}>
+          <Download className="mr-2 h-4 w-4" />
+          {buttonText}
+        </Button>
+      </CardContent>
+    </Card>
+  );
+};
+
 const GuidanceProgramBuilder = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterFrequency, setFilterFrequency] = useState<string>("all");
   const [filterPhase, setFilterPhase] = useState<string>("all");
   const [filterGroupSize, setFilterGroupSize] = useState<string>("all");
   const [expandedDetails, setExpandedDetails] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("overview");
   const { toast } = useToast();
   
   const handleDownload = (resourceId: string, resourceName: string) => {
@@ -799,353 +841,14 @@ const GuidanceProgramBuilder = () => {
 
   return (
     <div>
-      <div className="mb-8 bg-white p-6 rounded-lg border border-gray-100">
-        <h2 className="text-2xl font-semibold mb-3">Program Builder Overview</h2>
-        <p className="text-gray-600 mb-4">
-          This comprehensive toolkit helps you build and deliver effective guidance programs for students developing high-income skill portfolios. 
-          The resources below are adaptable to any teaching schedule - whether you meet with students twice weekly or just once a month.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center">
-                <Users className="h-5 w-5 mr-2 text-fss-primary" />
-                Program Structure
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                Divide each classroom into 3-6 interest-based groups. Allow students to choose pathways based on their strengths and interests, 
-                then provide targeted guidance to each group while maintaining whole-class activities for universal skills.
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center">
-                <Calendar className="h-5 w-5 mr-2 text-fss-primary" />
-                Flexible Scheduling
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                These sessions work with any schedule frequency. Filter below for weekly, bi-weekly, or monthly options based on your availability.
-                Each session can be adapted to different time allocations while maintaining core objectives.
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center">
-                <Brain className="h-5 w-5 mr-2 text-fss-primary" />
-                Skill Development Phases
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                The program follows five key phases: Assessment, Exploration, Development, Implementation, and Refinement.
-                These create a complete cycle that can be repeated with increasing complexity as students progress.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="getting-started">
-            <AccordionTrigger className="text-fss-primary">Getting Started Guide</AccordionTrigger>
-            <AccordionContent>
-              <div className="space-y-4 text-gray-600 text-sm">
-                <p><strong>Step 1:</strong> Begin with an Initial Assessment session (see below) to help students discover their interests and existing skills.</p>
-                <p><strong>Step 2:</strong> Form interest-based groups around common skill pathways selected by students.</p>
-                <p><strong>Step 3:</strong> Alternate between whole-class universal skill sessions and pathway-specific group sessions.</p>
-                <p><strong>Step 4:</strong> Schedule regular portfolio development and reflection sessions to document progress.</p>
-                <p><strong>Step 5:</strong> Connect skills to real-world applications as early as possible to maintain engagement.</p>
-                <p className="font-medium text-fss-primary">Remember, you can implement this program successfully regardless of how frequently you meet with students - the session plans below can be adapted to any schedule.</p>
-                <Button className="mt-2">
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Full Program Guide
-                </Button>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
-
-      <div className="mb-6">
-        <div className="text-xl font-semibold mb-4">Guidance Session Plans</div>
-        
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Search session plans..."
-              className="pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          
-          <div className="flex flex-wrap gap-2">
-            <Select value={filterPhase} onValueChange={setFilterPhase}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Filter by Phase" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Phases</SelectItem>
-                <SelectItem value="assessment">Assessment</SelectItem>
-                <SelectItem value="exploration">Exploration</SelectItem>
-                <SelectItem value="development">Development</SelectItem>
-                <SelectItem value="implementation">Implementation</SelectItem>
-                <SelectItem value="refinement">Refinement</SelectItem>
-              </SelectContent>
-            </Select>
-            
-            <Select value={filterFrequency} onValueChange={setFilterFrequency}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Filter by Frequency" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Frequencies</SelectItem>
-                <SelectItem value={FrequencyType.WEEKLY}>Weekly</SelectItem>
-                <SelectItem value={FrequencyType.BIWEEKLY}>Biweekly</SelectItem>
-                <SelectItem value={FrequencyType.MONTHLY}>Monthly</SelectItem>
-              </SelectContent>
-            </Select>
-            
-            <Select value={filterGroupSize} onValueChange={setFilterGroupSize}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Filter by Group Size" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Group Sizes</SelectItem>
-                <SelectItem value={GroupSize.SMALL}>Small Groups</SelectItem>
-                <SelectItem value={GroupSize.MEDIUM}>Medium Groups</SelectItem>
-                <SelectItem value={GroupSize.LARGE}>Large Groups</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        
-        {filteredSessions.length > 0 ? (
-          <div className="space-y-6">
-            {filteredSessions.map((session) => (
-              <div key={session.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                {/* Session Header */}
-                <div className="p-4 border-b border-gray-100">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="font-semibold text-lg text-gray-900">{session.title}</h3>
-                      <p className="text-gray-600 text-sm mt-1">{session.description}</p>
-                    </div>
-                    <Badge className={getPhaseColor(session.phase)}>
-                      {getPhaseDisplayName(session.phase)}
-                    </Badge>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-2 mt-3 items-center text-sm">
-                    <div className="flex items-center text-gray-500">
-                      <Clock className="h-4 w-4 mr-1" />
-                      {session.duration} minutes
-                    </div>
-                    <div className="flex items-center text-gray-500">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      {getFrequencyDisplayName(session.frequency)}
-                    </div>
-                    <div className="flex items-center text-gray-500">
-                      <Users className="h-4 w-4 mr-1" />
-                      {getGroupSizeDisplayName(session.groupSize)}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Session Details Toggle Button */}
-                <button
-                  className="w-full px-4 py-2 text-left flex items-center justify-between text-fss-primary bg-gray-50 hover:bg-gray-100 transition-colors"
-                  onClick={() => toggleSessionDetails(session.id)}
-                >
-                  <span className="font-medium">Session Details</span>
-                  {expandedDetails === session.id ? 
-                    <ChevronUp className="h-5 w-5" /> : 
-                    <ChevronDown className="h-5 w-5" />
-                  }
-                </button>
-                
-                {/* Expanded Content */}
-                {expandedDetails === session.id && (
-                  <div className="p-4">
-                    <div className="mb-4">
-                      <h4 className="font-medium mb-2 text-gray-800">Objectives</h4>
-                      <ul className="list-disc pl-5 space-y-1 text-gray-600">
-                        {session.objectives.map((objective, idx) => (
-                          <li key={idx}>{objective}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div className="mb-4">
-                      <h4 className="font-medium mb-2 text-gray-800">Session Structure</h4>
-                      <div className="overflow-x-auto">
-                        <table className="min-w-full border-collapse text-sm">
-                          <thead>
-                            <tr className="bg-gray-50">
-                              <th className="border border-gray-200 px-3 py-2 text-left">Activity</th>
-                              <th className="border border-gray-200 px-3 py-2 text-left">Time</th>
-                              <th className="border border-gray-200 px-3 py-2 text-left">Description</th>
-                              <th className="border border-gray-200 px-3 py-2 text-left">Materials</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {session.structure.map((item, idx) => (
-                              <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                <td className="border border-gray-200 px-3 py-2 font-medium">{item.activity}</td>
-                                <td className="border border-gray-200 px-3 py-2">{item.timeAllocation} min</td>
-                                <td className="border border-gray-200 px-3 py-2">{item.description}</td>
-                                <td className="border border-gray-200 px-3 py-2">
-                                  <ul className="list-disc pl-5">
-                                    {item.materials.map((material, midx) => (
-                                      <li key={midx}>{material}</li>
-                                    ))}
-                                  </ul>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    
-                    <div className="mb-4">
-                      <h4 className="font-medium mb-2 text-gray-800">Adaptations</h4>
-                      <div className="space-y-2">
-                        {session.adaptations.map((adaptation, idx) => (
-                          <div key={idx} className="bg-gray-50 p-3 rounded-md">
-                            <div className="font-medium text-gray-700">{adaptation.scenario}</div>
-                            <div className="text-gray-600">{adaptation.adjustment}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div className="mb-4">
-                      <h4 className="font-medium mb-2 text-gray-800">Resources</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {session.resources.map((resource) => (
-                          <div key={resource.id} className="border border-gray-200 rounded-md p-3 flex items-start">
-                            <div className="mr-3 p-2 bg-gray-100 rounded-md">
-                              {getResourceIcon(resource.type)}
-                            </div>
-                            <div className="flex-1">
-                              <h5 className="font-medium text-gray-800">{resource.title}</h5>
-                              <p className="text-xs text-gray-600 mb-2">{resource.description}</p>
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                onClick={() => handleDownload(resource.id, resource.title)}
-                              >
-                                <Download className="h-3.5 w-3.5 mr-1" />
-                                Download
-                              </Button>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {session.notes && (
-                      <div className="bg-amber-50 border-l-4 border-amber-400 p-3 text-amber-700">
-                        <h4 className="font-medium mb-1 text-amber-800">Teacher Notes</h4>
-                        <p className="text-sm">{session.notes}</p>
-                      </div>
-                    )}
-                    
-                    <div className="mt-4 flex justify-end">
-                      <Button className="bg-fss-primary hover:bg-fss-secondary">
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Full Session Plan
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-            <div className="text-gray-500">No session plans found matching your search.</div>
-            <Button 
-              variant="outline" 
-              className="mt-4"
-              onClick={() => {
-                setSearchQuery("");
-                setFilterFrequency("all");
-                setFilterPhase("all");
-                setFilterGroupSize("all");
-              }}
-            >
-              Clear Filters
-            </Button>
-          </div>
-        )}
-      </div>
-
-      <div className="bg-white p-6 rounded-lg border border-gray-100">
-        <h2 className="text-xl font-semibold mb-3">Program Implementation Support</h2>
-        <p className="text-gray-600 mb-4">
-          Need additional help implementing these guidance sessions? Download these supporting resources:
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Teacher Preparation Guide</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600 mb-4">
-                Complete preparation instructions to help you set up your guidance program with minimal resources.
-              </p>
-              <Button variant="outline" className="w-full">
-                <Download className="mr-2 h-4 w-4" />
-                Download Guide
-              </Button>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Group Formation Toolkit</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600 mb-4">
-                Tools and activities to help you effectively divide students into interest-based skill development groups.
-              </p>
-              <Button variant="outline" className="w-full">
-                <Download className="mr-2 h-4 w-4" />
-                Download Toolkit
-              </Button>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Progress Tracking System</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600 mb-4">
-                Simple, paper-based system for tracking student progress through their skill development journey.
-              </p>
-              <Button variant="outline" className="w-full">
-                <Download className="mr-2 h-4 w-4" />
-                Download System
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default GuidanceProgramBuilder;
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-6">
+          <TabsTrigger value="overview">
+            <Info className="h-4 w-4 mr-2" />
+            Program Overview
+          </TabsTrigger>
+          <TabsTrigger value="sessions">
+            <Calendar className="h-4 w-4 mr-2" />
+            Session Plans
+          </TabsTrigger>
+          <Tabs
