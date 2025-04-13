@@ -1,8 +1,9 @@
+
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ResourceLibrary from "@/components/ResourceLibrary";
-import SessionPlans from "@/components/SessionPlans";
+import GuidanceProgramBuilder from "@/components/GuidanceProgramBuilder"; // Renamed from SessionPlans
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, FileText, Download, Printer, Calendar, CheckCircle, Clock, Users, ExternalLink } from "lucide-react";
@@ -438,8 +439,8 @@ const TeachingTools = () => {
               <TabsTrigger value="printables" className="text-sm">
                 Printable Materials
               </TabsTrigger>
-              <TabsTrigger value="sessions" className="text-sm">
-                Session Plans
+              <TabsTrigger value="guidance" className="text-sm">
+                Guidance Program Builder
               </TabsTrigger>
               <TabsTrigger value="roadmaps" className="text-sm">
                 Implementation Roadmaps
@@ -474,16 +475,17 @@ const TeachingTools = () => {
               </Card>
             </TabsContent>
             
-            <TabsContent value="sessions" className="mt-6">
+            <TabsContent value="guidance" className="mt-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Session Plans</CardTitle>
+                  <CardTitle>Guidance Program Builder</CardTitle>
                   <CardDescription>
-                    Structured session plans for skill-building workshops that help students develop high-income skills with minimal resources.
+                    Comprehensive resources for building and delivering skill development programs that help students 
+                    create high-income skill portfolios, adaptable to any teaching schedule.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <SessionPlans />
+                  <GuidanceProgramBuilder />
                 </CardContent>
               </Card>
             </TabsContent>
@@ -536,4 +538,5 @@ const TeachingTools = () => {
       <Footer />
     </div>;
 };
+
 export default TeachingTools;
